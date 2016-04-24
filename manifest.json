@@ -1,0 +1,40 @@
+{
+  "name": "easy-slack",
+  "version": "0.0.1",
+  "description": "Easy usage of slack while browsing, the purpose is to have a fast access to respond messages on slack without losing focus on your browser.",
+  "minimum_chrome_version": "26",
+  "browser_action": {
+    "default_title": "Easy Slack",
+    "default_icon": {
+      "128": "images/icons/Slack_Black_128.png",
+      "64": "images/icons/Slack_Black_64.png",
+      "32": "images/icons/Slack_Black_32.png",
+      "16": "images/icons/Slack_Black_16.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["js/easy-respond.js"]
+    }
+  ],
+  "icons": {
+    "128": "images/icons/Slack_Black_128.png",
+    "64": "images/icons/Slack_Black_64.png",
+    "32": "images/icons/Slack_Black_32.png",
+    "16": "images/icons/Slack_Black_16.png"
+  },
+  "options_page": "options/options.html",
+  "manifest_version": 2
+}
