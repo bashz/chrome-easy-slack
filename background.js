@@ -40,7 +40,7 @@ chrome.storage.sync.get({
               at: new Date(Math.round(msg.ts * 1000)),
               body: msg.text
             };
-            if (msg.text == "sss") {// Must implement a selfreply break loop
+              // Must implement a selfreply break loop
               // Better map tabs with ready state on a lifo style
               // Must implement queue to not erase pseudo simultanious messages
               // Might also concat multi unresponded message of same user
@@ -49,7 +49,6 @@ chrome.storage.sync.get({
                   console.log(response); // Response is not needed yet
                 });
               });
-            }
           }
         };
       }
