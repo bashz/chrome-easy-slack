@@ -11,6 +11,7 @@ chrome.storage.sync.get({
     if (xhr.readyState == 4) {
       if (xhr.status == 200) {
         var slackInfo = JSON.parse(xhr.responseText);
+        slack.me = slackInfo.self.id;
         slack.users = mapObjectById(slackInfo.users);
         slack.team = slackInfo.team;
         slack.channels = mapObjectById(slackInfo.channels);
@@ -23,7 +24,7 @@ chrome.storage.sync.get({
         ws.onmessage = function (message) {
           var msg = JSON.parse(message.data);
           console.log(msg);
-          if (msg.type === "message") {
+          if (msg.type === "message" && msg.user !== slack.me) {
             var incomming = {
               team: slack.team.name,
               from: slack.users[msg.user].real_name,
