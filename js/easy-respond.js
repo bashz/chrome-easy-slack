@@ -18,8 +18,8 @@ chat.appendChild(form);
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   chat.setAttribute('style', 'display: block; position: fixed; top: 0; left: 0; width: 100%; height: 60px; background: #ddd; z-index: 99999');
-  from.appendChild(document.createTextNode(request.from + ' : '));
-  body.appendChild(document.createTextNode(request.body));
+  from.innerText = request.from + ' : ';
+  body.innerText = request.body;
   reply.setAttribute('data-target', request.replyTo);
   reply.focus();
   form.onsubmit = function () {// Must get token from oauth
@@ -35,6 +35,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
             chat.style.display = "none";
+            reply.value = '';
           } else
             console.error("Error when trying to respond.");
         }
